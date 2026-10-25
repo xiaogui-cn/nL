@@ -1,7 +1,0 @@
-function print(auto __str) -> void {
-    _windows_cmd_print(__str);
-}
-
-function input(ref auto __in) -> auto {
-    return _windows_cmd_cin("");
-}
