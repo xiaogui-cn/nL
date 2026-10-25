@@ -1,0 +1,230 @@
+{
+  "name": "nL",
+  "scopeName": "source.nl",
+  "patterns": [
+    { "include": "#type-keywords" },
+    { "include": "#strings" },
+    { "include": "#comments" },
+    { "include": "#literals" },
+    { "include": "#functions" },
+    { "include": "#function-calls" },
+    { "include": "#hash-directive" },
+    { "include": "#macro-directive" },
+    { "include": "#cpp-escape" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.nL",
+          "match": "//.*"
+        },
+        {
+          "name": "comment.block.nL",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    
+    "class": {
+      "patterns": [
+        {
+          "match": "\\bclass\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "entity.name.class"
+            }
+          }
+        }
+      ]
+    },
+  
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.nL",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.nL" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.nL" }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.nL",
+              "match": "\\\\."
+            }
+          ]
+        }, 
+        {
+          "name": "string.quoted.string.nL",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.nL" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.nL" }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.nL",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.nL",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.numeric.integer.nL",
+          "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.float.nL",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.macro.nL",
+          "match": "\\b[A-Z_][A-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "meta.function.definition.nL",
+          "begin": "^\\s*(function)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+          "beginCaptures": {
+            "1": { "name": "keyword.control.function.nL" },
+            "2": { "name": "storage.type.return.nL" },
+            "3": { "name": "entity.name.function.nL" }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.parameters.end.nL" }
+          },
+          "patterns": [
+            { "include": "#parameter-list" }
+          ]
+        }
+      ]
+    },
+    "parameter-list": {
+      "patterns": [
+        {
+          "match": "([a-zA-Z_][a-zA-Z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": { "name": "storage.type.parameter.nL" },
+            "2": { "name": "variable.parameter.nL" }
+          }
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.parameter.nL"
+        }
+      ]
+    },
+    "function-calls": {
+      "patterns": [
+        {
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+          "captures": {
+            "1": { "name": "entity.name.function.call.nL" }
+          }
+        }
+      ]
+    },
+    "hash-directive": {
+      "name": "keyword.control.directive.nL",
+      "begin": "^\\s*(include)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.directive.nL" }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "name": "string.quoted.angle.nL",
+          "begin": "<",
+          "end": ">",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.nL" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.nL" }
+          }
+        },
+        {
+          "name": "string.quoted.angle.nL",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.string.begin.nL" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.string.end.nL" }
+          }
+        }
+      ]
+    },
+    "macro-directive": {
+      "patterns": [
+        {
+          "name": "meta.preprocessor.define.nL",
+          "match": "^\\s*(define)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(.*)$",
+          "captures": {
+            "1": { "name": "keyword.control.directive.define.nL" },
+            "2": { "name": "entity.name.macro.nL" },
+            "3": {
+              "patterns": [
+                { "include": "#literals" },
+                { "include": "#strings" },
+                { "include": "#type-keywords" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    
+    "cpp-escape": {
+      "name": "meta.embedded.cpp.nL",
+      "begin": "\\bcpp\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": { "name": "keyword.control.nL" }
+      },
+      "patterns": [
+        { "include": "source.cpp" }
+      ]
+    },
+    "type-keywords": {
+      "patterns": [
+        {
+          "name": "storage.type.nL",
+          "match": "\\b(int|void|string|bool|char|auto|this|float|type|_windows_cmd_print|_windows_cmd_cin|_exit|vd)\\b"
+        },
+        {
+          "name": "keyword.control.nL",
+          "match": "\\b(function|return|var|define|if|elif|else|ref|const|for|array|class|new|alloc|operator|jump)\\b"
+        },
+        {
+          "name": "storage.modifier.nL",
+          "match": "\\b(public|private|protected):"
+        },
+        {
+          "name": "storage.modifier.nL",
+          "match": "<<"
+        }
+      ]
+    }
+  }
+}

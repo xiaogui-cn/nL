@@ -1,0 +1,13 @@
+{
+  "nL Program Entry start Main": {
+    "prefix": "nstart",
+    "body": [
+      "start Main()",
+      "{",
+      "    cpp(#include <iostream>)",
+      "    cpp(std::cout << \"Hello nL!\\n\";)",
+      "}"
+    ],
+    "description": "nL 程序入口 start Main(){ }"
+  }
+}

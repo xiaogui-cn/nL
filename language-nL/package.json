@@ -1,0 +1,44 @@
+{
+  "name": "language-nL",
+  "displayName": "nL Language Support",
+  "version": "0.0.1",
+  "publisher": "Registration of the \"nL\" color scheme for VSCode",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Programming Languages"],
+  "capabilities": {
+    "completionProvider": {
+      "triggerCharacters": []
+    },
+    "definitionProvider": true,
+    "textDocumentSync": 1
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "nL",
+        "aliases": ["nL", "nl"],
+        "extensions": [".nL"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icon/ico.png",
+          "dark": "./icon/ico.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nL",
+        "scopeName": "source.nl",
+        "path": "./syntaxes/nL.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "nL",
+        "path": "./snippets/nL.code-snippets"
+      }
+    ]
+  }
+}
