@@ -1,0 +1,91 @@
+// -*- nL -*-
+
+// Copyright Notice
+
+// Copyright 2026 Xiaogui. All rights reserved.
+
+// 1. Ownership
+// All content, materials, source code, and intellectual property contained within 
+// this "readme.txt" are the exclusive property of Xiaogui, 
+// unless otherwise stated.
+
+// 2. Permitted Use
+// You may view, download, and print content from this "readme.txt" for personal,
+// non-commercial, and informational purposes only, provided that you do not modify the content 
+// and retain all copyright and proprietary notices.
+
+// 3. Restrictions
+// Except as expressly permitted above, you may not reproduce, distribute, modify, display, perform,
+// or use any content from this "readme.txt" without the prior written consent of Xiaogui.
+
+// 4. Disclaimer
+// This "readme.txt" is provided "as is" without warranty of any kind, express or implied. 
+// Xiaogui shall not be liable for any damages arising from the use of or inability to use
+// this "readme.txt".
+
+// 5. Contact
+// For permission requests or inquiries, please contact: 
+// gtrfm@foxmail.com
+
+// Bilibili:
+// <https://space.bilibili.com/3546967290415511?spm_id_from=333.788.0.0>
+
+// GitHub:
+// <https://github.com/xiaogui-cn/nL>
+
+var float e = 1.414;    /// FLOAT e: 1.41428-------
+var float pi = 3.141;   /// FLOAT pi: 3.14159-------
+
+/// POW: X^y, similar to Python's ** operator
+/// RETURN: int
+function pow(int x, int y) -> int {
+    var int c = x;
+    for(var int i = 1; /* i = 1, i_0 is treated as the base. */
+        i < y; /* i < y, when i == y, it becomes x^(y+1) */
+        i = i+1 /* i = i + 1, similar to C's ++ operator */
+    ) {c = c * x;}
+    return c;
+}
+
+/// IS_PRIME: Check for prime numbers
+/// RETURN: bool
+/*
+ Implementation:
+ 
+  Starting from 3 (note that 2 is a prime number, and any number <= 1 is not a prime),
+  iterate until i > sqrt(n). If any i divides n with a remainder of 0, then n is a composite
+  number, and the function returns false. Once the loop finishes, meaning no i in the
+  range [3, sqrt(n)] satisfies n mod i == 0, n is determined to be a prime number.
+*/
+function is_prime(int n) -> bool {
+    // <= 1 is not a prime
+    if(n <= 1) return false; 
+    
+    // 2 is a prime number
+    if(n == 2) return true; 
+    
+    // Even number not a prime number
+    if(n % 2 == 0) return false; 
+
+    for(var int i = 3; /* start to three */
+        i * i <= n; /* ~= ( i <= sqrt(n) ) */
+        i = i + 2
+    ) {
+        if (n % i == 0) 
+            return false;
+    }
+    
+    return true;
+}
+
+/// FLOOR: Round down to the nearest integer
+/// RETURN: int
+function floor(float n) -> int {
+    return int<n>;
+}
+
+/// FLOOR: Ceil to the nearest integer
+/// RETURN: int
+function ceil(float n) -> int {
+    return int<n> + 1;
+}

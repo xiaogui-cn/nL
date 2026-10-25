@@ -1,0 +1,48 @@
+// -*- nL -*-
+
+// Copyright Notice
+
+// Copyright 2026 Xiaogui. All rights reserved.
+
+// 1. Ownership
+// All content, materials, source code, and intellectual property contained within 
+// this "readme.txt" are the exclusive property of Xiaogui, 
+// unless otherwise stated.
+
+// 2. Permitted Use
+// You may view, download, and print content from this "readme.txt" for personal,
+// non-commercial, and informational purposes only, provided that you do not modify the content 
+// and retain all copyright and proprietary notices.
+
+// 3. Restrictions
+// Except as expressly permitted above, you may not reproduce, distribute, modify, display, perform,
+// or use any content from this "readme.txt" without the prior written consent of Xiaogui.
+
+// 4. Disclaimer
+// This "readme.txt" is provided "as is" without warranty of any kind, express or implied. 
+// Xiaogui shall not be liable for any damages arising from the use of or inability to use
+// this "readme.txt".
+
+// 5. Contact
+// For permission requests or inquiries, please contact: 
+// gtrfm@foxmail.com
+
+// Bilibili:
+// <https://space.bilibili.com/3546967290415511?spm_id_from=333.788.0.0>
+
+// GitHub:
+// <https://github.com/xiaogui-cn/nL>
+
+/*
+  This header defines input and output functions that simplify the
+  cumbersome '_windows_cmd_print' and '_windows_cmd_cin' operations.
+  Please refer to 'readme.txt'<> for details.
+*/
+
+function print(auto /* use auto to match different variable types */ __str) -> void {
+    _windows_cmd_print(__str);
+}
+
+function input(ref /* use ref to reference variables */ auto __in) -> auto {
+    __in = _windows_cmd_cin("");
+}

@@ -1,0 +1,94 @@
+// -*- nL -*-
+
+// Copyright Notice
+
+// Copyright 2026 Xiaogui. All rights reserved.
+
+// 1. Ownership
+// All content, materials, source code, and intellectual property contained within 
+// this "readme.txt" are the exclusive property of Xiaogui, 
+// unless otherwise stated.
+
+// 2. Permitted Use
+// You may view, download, and print content from this "readme.txt" for personal,
+// non-commercial, and informational purposes only, provided that you do not modify the content 
+// and retain all copyright and proprietary notices.
+
+// 3. Restrictions
+// Except as expressly permitted above, you may not reproduce, distribute, modify, display, perform,
+// or use any content from this "readme.txt" without the prior written consent of Xiaogui.
+
+// 4. Disclaimer
+// This "readme.txt" is provided "as is" without warranty of any kind, express or implied. 
+// Xiaogui shall not be liable for any damages arising from the use of or inability to use
+// this "readme.txt".
+
+// 5. Contact
+// For permission requests or inquiries, please contact: 
+// gtrfm@foxmail.com
+
+// Bilibili:
+// <https://space.bilibili.com/3546967290415511?spm_id_from=333.788.0.0>
+
+// GitHub:
+// <https://github.com/xiaogui-cn/nL>
+
+class stack<type T> {
+    /*
+     The stack defines five standard functions. Please refer to usebook.txt
+     for details. Note that there are numerous known bugs and Undefined 
+     Behaviors (UB) associated with these functions,
+     so strictly follow the guidelines in usebook.txt when using them.
+    */
+    private:
+        array T t[];
+        var int cap;
+        var int it;
+        
+    public:
+        stack() {
+            this.cap = 5;
+            this.it = 0;
+            
+            alloc buf << T[this.cap];
+            this.t = buf;
+        }
+        
+        /// PUSH: Push value to stack
+        /// RETURN: void
+        function push(T _x) -> void { 
+            if(this.it +1 > this.cap) {
+                var int newCap = this.cap + 10;
+                alloc newArr << T[newCap];
+                for(var int i=0; i < this.cap; i = i + 1) {
+                    newArr[i] = this.t[i];
+                }
+                this.cap = newCap;
+                this.t = newArr;
+            }
+            
+            this.t[this.it] = _x;
+            this.it = this.it + 1;
+        }
+        
+        /// POP: Pop value to stack
+        /// RETURN: void
+        function pop() -> void { this.it = this.it - 1; }
+        
+        /// TOP: Get first value to stack
+        /// RETURN: T
+        function top() -> T { return this.t[this.it - 1]; }
+        
+        /// EMPTY: Is the container empty?
+        /// RETURN: bool
+        function empty() -> bool { 
+            if(this.it == 0)
+                return true;
+            else
+                return false; 
+        }
+        
+        /// SIZE: Container size
+        /// RETURN: int
+        function len() -> int { return this.it; }
+} /* stack */
